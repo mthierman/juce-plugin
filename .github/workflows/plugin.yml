@@ -7,7 +7,7 @@ permissions:
 
 jobs:
 
-  juce-plugin:
+  Juce-Plugin:
     runs-on: windows-latest
     steps:
 
@@ -16,11 +16,11 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Dev
+      - name: CMake
         run: . .\devshell.ps1 && dev && write CMAKE-VERSION && cmake --version && write NINJA-VERSION && ninja --version && debug
 
-      - name: Audio Plugin Example
+      - name: Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Audio Plugin Example
+          name: Juce Plugin
           path: "build/AudioPluginExample_artefacts/Debug/Standalone/Audio Plugin Example.exe"
