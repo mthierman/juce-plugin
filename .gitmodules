@@ -1,0 +1,12 @@
+[submodule "libs/JUCE"]
+	path = libs/JUCE
+	url = https://github.com/juce-framework/JUCE
+	branch = juce7
+[submodule "libs/sst-filters"]
+	path = libs/sst-filters
+	url = https://github.com/surge-synthesizer/sst-filters
+	branch = main
+[submodule "libs/sst-waveshapers"]
+	path = libs/sst-waveshapers
+	url = https://github.com/surge-synthesizer/sst-waveshapers
+	branch = main
