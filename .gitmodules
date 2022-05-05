@@ -1,7 +1,7 @@
 [submodule "libs/JUCE"]
 	path = libs/JUCE
 	url = https://github.com/juce-framework/JUCE
-	branch = juce7
+	branch = develop
 [submodule "libs/sst-filters"]
 	path = libs/sst-filters
 	url = https://github.com/surge-synthesizer/sst-filters
