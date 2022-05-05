@@ -2,14 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 project(GUI_APP_EXAMPLE VERSION 0.0.1)
 add_subdirectory(libs/JUCE)
 
-juce_add_gui_app(GuiAppExample
-    # VERSION ...                       # Set this if the app version is different to the project version
-    # ICON_BIG ...                      # ICON_* arguments specify a path to an image file to use as an icon
-    # ICON_SMALL ...
-    # DOCUMENT_EXTENSIONS ...           # Specify file extensions that should be associated with this app
-    # COMPANY_NAME ...                  # Specify the name of the app's author
-    PRODUCT_NAME "Gui App Example")     # The name of the final executable, which can differ from the target name
-
 juce_add_plugin(AudioPluginExample
     # VERSION ...                               # Set this if the plugin version is different to the project version
     # ICON_BIG ...                              # ICON_* arguments specify a path to an image file to use as an icon for the Standalone
@@ -27,62 +19,16 @@ juce_add_plugin(AudioPluginExample
     FORMATS VST3 Standalone                  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
     PRODUCT_NAME "Audio Plugin Example")        # The name of the final executable, which can differ from the target name
 
-juce_add_gui_app(AudioPluginHost
-    BUNDLE_ID                       com.juce.pluginhost
-    ICON_BIG                        "${CMAKE_CURRENT_SOURCE_DIR}/src/AudioPluginHost/Source/JUCEAppIcon.png"
-    MICROPHONE_PERMISSION_ENABLED   TRUE
-    PLUGINHOST_AU                   TRUE)
-
-juce_generate_juce_header(AudioPluginHost)
-
-target_sources(GuiAppExample
-    PRIVATE
-        src/Main.cpp
-        src/MainComponent.cpp)
-
 target_sources(AudioPluginExample
     PRIVATE
         src/PluginEditor.cpp
         src/PluginProcessor.cpp)
-
-target_sources(AudioPluginHost PRIVATE
-    src/AudioPluginHost/Source/HostStartup.cpp
-    src/AudioPluginHost/Source/Plugins/IOConfigurationWindow.cpp
-    src/AudioPluginHost/Source/Plugins/InternalPlugins.cpp
-    src/AudioPluginHost/Source/Plugins/PluginGraph.cpp
-    src/AudioPluginHost/Source/UI/GraphEditorPanel.cpp
-    src/AudioPluginHost/Source/UI/MainHostWindow.cpp)
-
-target_compile_definitions(GuiAppExample
-    PRIVATE
-        JUCE_WEB_BROWSER=0
-        JUCE_USE_CURL=0
-        JUCE_APPLICATION_NAME_STRING="$<TARGET_PROPERTY:GuiAppExample,JUCE_PRODUCT_NAME>"
-        JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:GuiAppExample,JUCE_VERSION>")
 
 target_compile_definitions(AudioPluginExample
     PUBLIC
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
         JUCE_VST3_CAN_REPLACE_VST2=0)
-
-target_compile_definitions(AudioPluginHost
-    PRIVATE
-        PIP_JUCE_EXAMPLES_DIRECTORY_STRING="${JUCE_SOURCE_DIR}/examples"
-        JUCE_ALSA=1
-        JUCE_DIRECTSOUND=1
-        JUCE_PLUGINHOST_LADSPA=1
-        JUCE_PLUGINHOST_VST3=1
-        JUCE_PLUGINHOST_VST=0
-        JUCE_USE_CAMERA=0
-        JUCE_USE_CDBURNER=0
-        JUCE_USE_CDREADER=0
-        JUCE_USE_CURL=0
-        JUCE_USE_FLAC=0
-        JUCE_USE_OGGVORBIS=1
-        JUCE_VST3_HOST_CROSS_PLATFORM_UID=1
-        JUCE_WASAPI=1
-        JUCE_WEB_BROWSER=0)
 
 if(DEFINED ENV{ASIOSDK_DIR} OR BUILD_USING_MY_ASIO_LICENSE)
     if(BUILD_USING_MY_ASIO_LICENSE)
@@ -116,23 +62,6 @@ if(DEFINED ENV{ASIOSDK_DIR} OR BUILD_USING_MY_ASIO_LICENSE)
     set(JUCE_ASIO_SUPPORT TRUE)
 endif()
 
-juce_add_binary_data(AudioPluginHostData SOURCES
-    libs/JUCE/examples/Assets/cassette_recorder.wav
-    libs/JUCE/examples/Assets/cello.wav
-    libs/JUCE/examples/Assets/guitar_amp.wav
-    libs/JUCE/examples/Assets/proaudio.path
-    libs/JUCE/examples/Assets/reverb_ir.wav
-    libs/JUCE/examples/Assets/singing.ogg)
-
-target_link_libraries(GuiAppExample
-    PRIVATE
-        # GuiAppData            # If we'd created a binary data target, we'd link to it here
-        juce::juce_gui_extra
-    PUBLIC
-        juce::juce_recommended_config_flags
-        juce::juce_recommended_lto_flags
-        juce::juce_recommended_warning_flags)
-
 target_link_libraries(AudioPluginExample
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
@@ -141,15 +70,3 @@ target_link_libraries(AudioPluginExample
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags)
-
-target_link_libraries(AudioPluginHost PRIVATE
-    AudioPluginHostData
-    juce::juce_audio_utils
-    juce::juce_cryptography
-    juce::juce_dsp
-    juce::juce_opengl
-    juce::juce_recommended_config_flags
-    juce::juce_recommended_lto_flags
-    juce::juce_recommended_warning_flags)
-
-juce_add_bundle_resources_directory(AudioPluginHost libs/JUCE/examples/Assets)
