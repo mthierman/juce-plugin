@@ -1,4 +1,4 @@
-name: JUCE DemoRunner
+name: juce-plugin
 
 on: workflow_dispatch
 
@@ -7,7 +7,7 @@ permissions:
 
 jobs:
 
-  JUCE-DemoRunner:
+  juce-plugin:
     runs-on: windows-latest
     steps:
 
