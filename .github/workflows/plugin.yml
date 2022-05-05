@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Juce Plugin
-          path: "build/AudioPluginExample_artefacts/Debug/Standalone/Audio Plugin Example.exe"
+          path: "build/JucePlugin_artefacts/Debug/Standalone/Juce Plugin.exe"
