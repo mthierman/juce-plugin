@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.15)
-project(juce-plugin VERSION 0.0.1)
+project("Juce Plugin" VERSION 0.0.1)
 add_subdirectory(libs/JUCE)
+
+math(EXPR BITNESS "${CMAKE_SIZEOF_VOID_P} * 8" OUTPUT_FORMAT DECIMAL)
+message(STATUS "${PROJECT_NAME} ${BITNESS}-bit, version ${PROJECT_VERSION}, ${CMAKE_BUILD_TYPE} build")
+message(STATUS "CMake version ${CMAKE_VERSION}, Compiler version ${CMAKE_CXX_COMPILER_VERSION}")
 
 juce_add_plugin(JucePlugin
     # VERSION ...                               # Set this if the plugin version is different to the project version
