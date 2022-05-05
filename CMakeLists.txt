@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.15)
-project(TestPlugin VERSION 0.0.1)
+cmake_minimum_required(VERSION 3.20)
+project(TestPlugin VERSION 0.0.1 LANGUAGES C CXX ASM)
+set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(libs/JUCE)
 add_subdirectory(libs/clap-juce-extensions)
 
@@ -31,7 +32,8 @@ target_compile_definitions(${PROJECT_NAME}
     PUBLIC
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
-        JUCE_VST3_CAN_REPLACE_VST2=0)
+        JUCE_VST3_CAN_REPLACE_VST2=0
+        JUCE_DISPLAY_SPLASH_SCREEN=0)
 
 if(DEFINED ENV{ASIOSDK_DIR} OR BUILD_USING_MY_ASIO_LICENSE)
     if(BUILD_USING_MY_ASIO_LICENSE)
