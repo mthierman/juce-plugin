@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
 
       - name: Dev
-        run: . .\devshell.ps1 && dev && write CMAKE-VERSION && cmake --version && write NINJA-VERSION && ninja --version && cd libs/JUCE && debug
+        run: . .\devshell.ps1 && dev && write CMAKE-VERSION && cmake --version && write NINJA-VERSION && ninja --version && debug
 
       - name: Gui App Example
         uses: actions/upload-artifact@v3
