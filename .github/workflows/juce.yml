@@ -31,7 +31,7 @@ jobs:
           name: Audio Plugin Example
           path: |
             "build/AudioPluginExample_artefacts/Debug/Standalone/Audio Plugin Example.exe"
-            "build/AudioPluginExample_artefacts/Debug/VST3/Audio Plugin Example.vst3/"
+            "build/AudioPluginExample_artefacts/Debug/VST3/Audio Plugin Example.vst3/Contents/x84_64-win/Audio Plugin Example.vst3"
 
       - name: Audio Plugin Host
         uses: actions/upload-artifact@v3
