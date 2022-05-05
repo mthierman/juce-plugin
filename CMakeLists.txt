@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
-project(GUI_APP_EXAMPLE VERSION 0.0.1)
+project(juce-plugin VERSION 0.0.1)
 add_subdirectory(libs/JUCE)
 
-juce_add_plugin(AudioPluginExample
+juce_add_plugin(JucePlugin
     # VERSION ...                               # Set this if the plugin version is different to the project version
     # ICON_BIG ...                              # ICON_* arguments specify a path to an image file to use as an icon for the Standalone
     # ICON_SMALL ...
@@ -17,14 +17,14 @@ juce_add_plugin(AudioPluginExample
     PLUGIN_CODE Dem0                            # A unique four-character plugin id with exactly one upper-case character
                                                 # GarageBand 10.3 requires the first letter to be upper-case, and the remaining letters to be lower-case
     FORMATS VST3 Standalone                  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-    PRODUCT_NAME "Audio Plugin Example")        # The name of the final executable, which can differ from the target name
+    PRODUCT_NAME "Juce Plugin")        # The name of the final executable, which can differ from the target name
 
-target_sources(AudioPluginExample
+target_sources(JucePlugin
     PRIVATE
         src/PluginEditor.cpp
         src/PluginProcessor.cpp)
 
-target_compile_definitions(AudioPluginExample
+target_compile_definitions(JucePlugin
     PUBLIC
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
@@ -43,28 +43,18 @@ if(DEFINED ENV{ASIOSDK_DIR} OR BUILD_USING_MY_ASIO_LICENSE)
             COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/asio
             COMMAND ${CMAKE_COMMAND} -D ASIO_SDK_DESTINATION=${CMAKE_BINARY_DIR}/asio -P cmake/get-asio.cmake
         )
-        add_dependencies(GuiAppExample get-local-asio)
-        add_dependencies(AudioPluginExample get-local-asio)
-        add_dependencies(AudioPluginHost get-local-asio)
+        add_dependencies(JucePlugin get-local-asio)
     else()
         file(TO_CMAKE_PATH "$ENV{ASIOSDK_DIR}" ASIOSDK_DIR)
         message(STATUS "ASIO SDK found at ${ASIOSDK_DIR}")
         message(STATUS "The resulting standalone executables are not licensed for distribution!")
     endif()
-
-    target_compile_definitions(GuiAppExample PUBLIC JUCE_ASIO=1)
-    target_compile_definitions(AudioPluginExample PUBLIC JUCE_ASIO=1)
-    target_compile_definitions(AudioPluginHost PUBLIC JUCE_ASIO=1)
-
-    target_include_directories(GuiAppExample PUBLIC ${ASIOSDK_DIR}/common)
-    target_include_directories(AudioPluginExample PUBLIC ${ASIOSDK_DIR}/common)
-    target_include_directories(AudioPluginHost PUBLIC ${ASIOSDK_DIR}/common)
-    set(JUCE_ASIO_SUPPORT TRUE)
+    target_compile_definitions(JucePlugin PUBLIC JUCE_ASIO=1)
+    target_include_directories(JucePlugin PUBLIC ${ASIOSDK_DIR}/common)
 endif()
 
-target_link_libraries(AudioPluginExample
+target_link_libraries(JucePlugin
     PRIVATE
-        # AudioPluginData           # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
     PUBLIC
         juce::juce_recommended_config_flags
