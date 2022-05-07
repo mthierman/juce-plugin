@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: pwsh -NoExit -NonInteractive -File ".\scripts\Ubuntu.ps1"
+        run: pwsh -NonInteractive -File ".\scripts\Ubuntu.ps1"
 
       - name: Artifact
         uses: actions/upload-artifact@v3
