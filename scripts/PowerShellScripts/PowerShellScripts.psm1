@@ -36,7 +36,7 @@ Set-Alias -Name juce-demo -Value Build-JuceDemo
 
 # UTILITY FUNCTIONS
 
-function Add-Symlink ($Path, $Target) {
+function Add-Symlink ($Target, $Path) {
   New-Item -ItemType SymbolicLink -Path $Path -Target $Target
 }
 Set-Alias -Name shortcut -Value Add-Symlink
