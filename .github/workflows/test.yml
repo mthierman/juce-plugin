@@ -7,8 +7,8 @@ permissions:
 
 jobs:
 
-  build:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: windows-latest
     steps:
 
       - name: Checkout
@@ -16,11 +16,5 @@ jobs:
         with:
           submodules: recursive
 
-      - name: PowerShell
-        run: pwsh -NonInteractive -File ".\scripts\Ubuntu.ps1"
-
-      - name: Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Juce Plugin
-          path: "build/release/TestPlugin_artefacts/Release/Standalone/Test Plugin"
+      - name: CMake
+        run: pwsh -NoExit -NonInteractive -File ".\scripts\Windows.ps1"

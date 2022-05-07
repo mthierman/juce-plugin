@@ -16,6 +16,12 @@ function Build-JucePlugin {
 }
 Set-Alias -Name plugin -Value Build-JucePlugin
 
+function Build-JuceDemo {
+  cmake -B build/demo -G "Ninja" -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON
+  cmake --build build/demo --target $args
+}
+Set-Alias -Name juce-demo -Value Build-JuceDemo
+
 function Build-Release {
   cmake --preset release
   cmake --build --preset release
@@ -27,12 +33,6 @@ function Build-Debug {
   cmake --build --preset debug
 }
 Set-Alias -Name plugin-debug -Value Build-Debug
-
-function Build-JuceDemo {
-  cmake -B build/demo -G "Ninja" -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON
-  cmake --build build/demo --target $args
-}
-Set-Alias -Name juce-demo -Value Build-JuceDemo
 
 # UTILITY FUNCTIONS
 

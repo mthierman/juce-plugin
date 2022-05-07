@@ -1,4 +1,4 @@
-name: Release Build - Windows 64
+name: Release Build - Windows 64bit
 
 on:
   push:
@@ -19,10 +19,10 @@ jobs:
           submodules: recursive
 
       - name: CMake
-        run: Import-Module .\scripts\PowerShellScripts && 64bit && plugin-release
+        run: pwsh -NoExit -NonInteractive -File ".\scripts\Windows.ps1"
 
       - name: Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Juce Plugin
-          path: "build/release/TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"
+          path: "release/TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"
