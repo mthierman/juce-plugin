@@ -1,0 +1,28 @@
+name: Release Build - Windows 64
+
+on:
+  push:
+    tags: v**
+
+permissions:
+  contents: write
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: CMake
+        run: Import-Module .\scripts\PowerShellScripts && 64bit && plugin-release
+
+      - name: Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Juce Plugin
+          path: "build/release/TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"
