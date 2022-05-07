@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
 
       - name: CMake
-        run: pwsh -NoExit -NoLogo -NonInteractive -File ".\scripts\Ubuntu.ps1"
+        run: sudo apt install ninja-build -y && pwsh -NoExit -NoLogo -NonInteractive -File ".\scripts\Ubuntu.ps1"
 
       - name: Artifact
         uses: actions/upload-artifact@v3
