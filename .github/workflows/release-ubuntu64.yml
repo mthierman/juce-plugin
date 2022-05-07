@@ -1,8 +1,6 @@
 name: Release Build - Ubuntu 64bit
 
-on:
-  push:
-    tags: v**
+on: workflow_dispatch
 
 permissions:
   contents: write
