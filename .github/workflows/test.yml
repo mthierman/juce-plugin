@@ -17,4 +17,4 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: pwsh -NoExit -File ".\scripts\PowerShellScripts\PowerShellScripts.psm1" -Command "& list-files"
+        run: pwsh -NoExit -NonInteractive -File ".\scripts\ubuntu.ps1"
