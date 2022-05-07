@@ -8,5 +8,16 @@ jobs:
     runs-on: windows-latest
     steps:
 
-      - name: Test
-        run: $env:PSModulePath
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: PowerShell
+        run: Import-Module .\scripts\PowerShellScripts
+
+      - name: Test Files
+        run: list-files
+
+      - name: Test Dev Prompt
+        run: 64bit
