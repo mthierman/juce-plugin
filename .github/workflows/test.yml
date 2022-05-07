@@ -17,4 +17,10 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: Import-Module .\scripts\PowerShellScripts && 64bit && plugin-release && ls && zip "Juce Plugin.zip" "build/JucePlugin_artefacts/Debug/Standalone/Juce Plugin.exe"
+        run: Import-Module .\scripts\PowerShellScripts && 64bit && plugin-release
+
+      - name: Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Juce Plugin
+          path: "build/release/TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"

@@ -19,7 +19,6 @@
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "1",
                 "BUILD_USING_MY_ASIO_LICENSE": true
             }
         },
@@ -41,7 +40,6 @@
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "1",
                 "BUILD_USING_MY_ASIO_LICENSE": true
             }
         }
