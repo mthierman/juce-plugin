@@ -19,7 +19,7 @@ jobs:
           submodules: recursive
 
       - name: CMake
-        run: pwsh -NoExit -NonInteractive -File ".\scripts\Windows.ps1"
+        run: pwsh -NoExit -NoLogo -NonInteractive -File ".\scripts\Windows.ps1"
 
       - name: Artifact
         uses: actions/upload-artifact@v3

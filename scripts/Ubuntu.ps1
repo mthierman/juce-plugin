@@ -1,2 +1,2 @@
 Import-Module .\scripts\PowerShellScripts
-plugin-release
+release

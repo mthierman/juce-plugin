@@ -1,47 +1,47 @@
 # DEVELOPER FUNCTIONS
 
-function Initialize-DevShell64 {
+function Initialize-GhDevShell64 {
   & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -HostArch amd64 -Arch amd64 -SkipAutomaticLocation
 }
-Set-Alias -Name 64bit -Value Initialize-DevShell64
+Set-Alias -Name 64bit -Value Initialize-GhDevShell64
 
-function Initialize-DevShell32 {
+function Initialize-GhDevShell32 {
   & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -HostArch x86 -Arch x86 -SkipAutomaticLocation
 }
-Set-Alias -Name 32bit -Value Initialize-DevShell32
+Set-Alias -Name 32bit -Value Initialize-GhDevShell32
 
-function Build-JucePlugin {
+function Build-GhJucePlugin {
   cmake -B build -G "Ninja"
   cmake --build build --target $args
 }
-Set-Alias -Name plugin -Value Build-JucePlugin
+Set-Alias -Name plugin -Value Build-GhJucePlugin
 
-function Build-JuceDemo {
+function Build-GhJuceDemo {
   cmake -B build/demo -G "Ninja" -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON
   cmake --build build/demo --target $args
 }
-Set-Alias -Name juce-demo -Value Build-JuceDemo
+Set-Alias -Name juce-demo -Value Build-GhJuceDemo
 
-function Build-Release {
+function Build-GhJucePluginRelease {
   cmake --preset release
   cmake --build --preset release
 }
-Set-Alias -Name plugin-release -Value Build-Release
+Set-Alias -Name release -Value Build-GhJucePluginRelease
 
-function Build-Debug {
+function Build-GhJucePluginDebug {
   cmake --preset debug
   cmake --build --preset debug
 }
-Set-Alias -Name plugin-debug -Value Build-Debug
+Set-Alias -Name debug -Value Build-GhJucePluginDebug
 
 # UTILITY FUNCTIONS
 
-function Add-Symlink ($Target, $Path) {
+function Add-GhShortcut ($Target, $Path) {
   New-Item -ItemType SymbolicLink -Path $Path -Target $Target
 }
-Set-Alias -Name shortcut -Value Add-Symlink
+Set-Alias -Name shortcut -Value Add-GhShortcut
 
-function Add-7Zip ($Zip) {
+function Add-Gh7Zip ($Zip) {
   7z a $Zip $args
 }
-Set-Alias -Name zip -Value Add-7Zip
+Set-Alias -Name zip -Value Add-Gh7Zip

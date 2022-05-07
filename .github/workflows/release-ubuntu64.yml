@@ -18,11 +18,11 @@ jobs:
         with:
           submodules: recursive
 
-      - name: PowerShell
-        run: pwsh -NoExit -NonInteractive -File ".\scripts\Ubuntu.ps1"
+      - name: CMake
+        run: pwsh -NoExit -NoLogo -NonInteractive -File ".\scripts\Ubuntu.ps1"
 
       - name: Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Juce Plugin
-          path: "build/release/TestPlugin_artefacts/Release/Standalone/Test Plugin"
+          path: "release/TestPlugin_artefacts/Release/Standalone/Test Plugin"
