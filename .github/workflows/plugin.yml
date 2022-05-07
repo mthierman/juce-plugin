@@ -1,4 +1,4 @@
-name: juce-plugin
+name: Release Build
 
 on: workflow_dispatch
 
@@ -7,7 +7,7 @@ permissions:
 
 jobs:
 
-  Juce-Plugin:
+  build:
     runs-on: windows-latest
     steps:
 
@@ -17,10 +17,10 @@ jobs:
           submodules: recursive
 
       - name: CMake
-        run: . .\scripts\PowerShell.ps1 && dev && write CMAKE-VERSION && cmake --version && write NINJA-VERSION && ninja --version && debug
+        run: Import-Module .\scripts\PowerShellScripts && 64bit && plugin-release
 
       - name: Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Juce Plugin
-          path: "build/JucePlugin_artefacts/Debug/Standalone/Juce Plugin.exe"
+          path: "build/release/TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"
