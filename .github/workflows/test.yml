@@ -11,5 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Dir
+        run: mkdir test
+
       - name: PowerShell
-        run: pwsh -NoExit -Command {Get-Help}
+        run: pwsh -NoExit -File .\scripts\PowerShellScripts\PowerShellScripts.psm1 -Command {Get-ChildItem}
