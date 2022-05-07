@@ -2,6 +2,28 @@
     "version": 4,
     "configurePresets": [
         {
+            "name": "release",
+            "displayName": "release",
+            "description": "Release",
+            "generator": "Ninja",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "toolset": {
+                "value": "host=x64",
+                "strategy": "external"
+            },
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "1",
+                "BUILD_USING_MY_ASIO_LICENSE": true
+            }
+        },
+        {
             "name": "debug",
             "displayName": "debug",
             "description": "Debug",
@@ -14,7 +36,7 @@
                 "value": "host=x64",
                 "strategy": "external"
             },
-            "binaryDir": "${sourceDir}/build",
+            "binaryDir": "${sourceDir}/build/debug",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl",
@@ -25,6 +47,13 @@
         }
     ],
     "buildPresets": [
+        {
+            "name": "release",
+            "displayName": "release",
+            "description": "Release",
+            "configurePreset": "release",
+            "configuration": "Release"
+        },
         {
             "name": "debug",
             "displayName": "debug",

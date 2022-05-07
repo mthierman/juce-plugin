@@ -1,0 +1,12 @@
+name: testing
+
+on: workflow_dispatch
+
+jobs:
+
+  testing:
+    runs-on: windows-latest
+    steps:
+
+      - name: Test
+        run: $env:PSModulePath
