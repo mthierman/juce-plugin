@@ -14,10 +14,4 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: Import-Module .\scripts\PowerShellScripts
-
-      - name: Test Files
-        run: list-files
-
-      - name: Test Dev Prompt
-        run: 64bit
+        run: Import-Module .\scripts\PowerShellScripts && list-files && 64bit
