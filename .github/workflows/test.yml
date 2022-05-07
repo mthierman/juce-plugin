@@ -12,4 +12,4 @@ jobs:
     steps:
 
       - name: PowerShell
-        run: pwsh -NoExit && Get-Help
+        run: pwsh -NoExit -Command {Get-Help}
