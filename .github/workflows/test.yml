@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Dir
-        run: mkdir test
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       - name: PowerShell
         run: pwsh -NoExit -File ".\scripts\PowerShellScripts\PowerShellScripts.psm1" -Command {Get-ChildItem}
