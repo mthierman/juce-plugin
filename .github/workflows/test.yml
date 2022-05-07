@@ -17,4 +17,7 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: Import-Module .\scripts\PowerShellScripts && 64bit
+        run: New-Item -ItemType SymbolicLink -Path C:\Users\runneradmin\Documents\PowerShell\Modules\PowerShellScripts -Target scripts\PowerShellScripts
+
+      - name: PowerShell
+        run: 64bit
