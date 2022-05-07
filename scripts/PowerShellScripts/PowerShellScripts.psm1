@@ -36,12 +36,12 @@ Set-Alias -Name juce-demo -Value Build-JuceDemo
 
 # UTILITY FUNCTIONS
 
-function Find-GitFiles {
-  git ls-files -v
-}
-Set-Alias -Name list-files -Value Find-GitFiles
-  
 function Add-Symlink ($Path, $Target) {
   New-Item -ItemType SymbolicLink -Path $Path -Target $Target
 }
 Set-Alias -Name shortcut -Value Add-Symlink
+
+function Add-7Zip ($Zip) {
+  7z a $Zip $args
+}
+Set-Alias -Name zip -Value Add-7Zip

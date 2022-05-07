@@ -1,10 +1,13 @@
-name: testing
+name: test
 
 on: workflow_dispatch
 
+permissions:
+  contents: write
+
 jobs:
 
-  testing:
+  test:
     runs-on: windows-latest
     steps:
 
@@ -14,4 +17,4 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: Import-Module .\scripts\PowerShellScripts && list-files && 64bit
+        run: Import-Module .\scripts\PowerShellScripts && 64bit && plugin-release && ls && zip "Juce Plugin.zip" "build/JucePlugin_artefacts/Debug/Standalone/Juce Plugin.exe"
