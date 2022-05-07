@@ -17,4 +17,4 @@ jobs:
           submodules: recursive
 
       - name: PowerShell
-        run: pwsh -NoExit -File ".\scripts\PowerShellScripts\PowerShellScripts.psm1" -Command {Get-ChildItem}
+        run: pwsh -NoExit -File ".\scripts\PowerShellScripts\PowerShellScripts.psm1" -Command "& list-files"

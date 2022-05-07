@@ -45,3 +45,7 @@ function Add-7Zip ($Zip) {
   7z a $Zip $args
 }
 Set-Alias -Name zip -Value Add-7Zip
+
+# TEST
+
+Set-Alias -Name list-files -Value Get-ChildItem
