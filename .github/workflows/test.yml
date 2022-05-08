@@ -16,8 +16,8 @@ env:
 jobs:
 
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
 
-      - name: CMake
+      - name: powershell
         run: gtz
