@@ -37,7 +37,7 @@ target_compile_definitions(${PROJECT_NAME}
 
 if(DEFINED ENV{ASIOSDK_DIR} OR POWERSHELL_ASIO)
     if(POWERSHELL_ASIO)
-        execute_process(COMMAND pwsh -NoProfile -File "scripts/ASIO/ASIO.ps1")
+        execute_process(COMMAND pwsh -NoProfile -Command "& {Import-Module .\\scripts\\ASIO && asio}")
         target_compile_definitions(${PROJECT_NAME} PUBLIC JUCE_ASIO=1)
         target_include_directories(${PROJECT_NAME} PUBLIC libs/asio/common)
     else()

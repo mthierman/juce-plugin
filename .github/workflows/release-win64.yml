@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Juce Plugin
-          path: "release/TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"
+          path: "TestPlugin_artefacts/Release/Standalone/Test Plugin.exe"

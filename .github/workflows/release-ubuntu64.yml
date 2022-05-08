@@ -25,10 +25,10 @@ jobs:
           submodules: recursive
 
       - name: CMake
-        run: sudo apt install ninja-build -y && pwsh -NoExit -NoLogo -NonInteractive -File ".\scripts\Ubuntu.ps1"
+        run: sudo apt install ninja-build -y && Import-Module .\scripts\PowerShellScripts && release
 
       - name: Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Juce Plugin
-          path: "release/TestPlugin_artefacts/Release/Standalone/Test Plugin"
+          path: "TestPlugin_artefacts/Release/Standalone/Test Plugin"
