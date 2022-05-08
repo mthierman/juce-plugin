@@ -15,9 +15,14 @@ env:
 
 jobs:
 
-  test:
+  build:
     runs-on: windows-latest
     steps:
 
-      - name: Check
-      - run: gtz
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: CMake
+        run: gtz
