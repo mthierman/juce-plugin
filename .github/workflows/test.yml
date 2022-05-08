@@ -15,7 +15,7 @@ env:
 
 jobs:
 
-  build:
+  test:
     runs-on: windows-latest
     steps:
 
