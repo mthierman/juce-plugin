@@ -35,6 +35,7 @@ target_compile_definitions(${PROJECT_NAME}
         JUCE_VST3_CAN_REPLACE_VST2=0
         JUCE_DISPLAY_SPLASH_SCREEN=0)
 
+#[[
 if(DEFINED ENV{ASIOSDK_DIR} OR BUILD_USING_MY_ASIO_LICENSE)
     if(BUILD_USING_MY_ASIO_LICENSE)
         message(STATUS "** BUILD USING OWN ASIO LICENSE **")
@@ -56,6 +57,26 @@ if(DEFINED ENV{ASIOSDK_DIR} OR BUILD_USING_MY_ASIO_LICENSE)
     endif()
     target_compile_definitions(${PROJECT_NAME} PUBLIC JUCE_ASIO=1)
     target_include_directories(${PROJECT_NAME} PUBLIC ${ASIOSDK_DIR}/common)
+endif()
+]]
+
+if(DEFINED ENV{ASIOSDK_DIR} OR POWERSHELL_ASIO)
+    if(POWERSHELL_ASIO)
+        execute_process(COMMAND pwsh -NoProfile -File "scripts/ASIO.ps1")
+        target_compile_definitions(${PROJECT_NAME} PUBLIC JUCE_ASIO=1)
+        target_include_directories(${PROJECT_NAME} PUBLIC libs/asio/common)
+    else()
+        message(STATUS "Checking for Steinberg ASIO SDK")
+        if(EXISTS "$ENV{ASIOSDK_DIR}/readme.txt")
+            file(TO_CMAKE_PATH "$ENV{ASIOSDK_DIR}" ASIOSDK_DIR)
+            message(STATUS "Steinberg ASIO SDK location: ${ASIOSDK_DIR}")
+            message(STATUS "The resulting standalone executables are not licensed for distribution")
+            target_compile_definitions(${PROJECT_NAME} PUBLIC JUCE_ASIO=1)
+            target_include_directories(${PROJECT_NAME} PUBLIC ${ASIOSDK_DIR}/common)
+        else()
+            message(STATUS "Steinberg ASIO SDK not found")
+        endif()
+    endif()
 endif()
 
 target_link_libraries(${PROJECT_NAME}
