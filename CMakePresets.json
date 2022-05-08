@@ -5,10 +5,21 @@
             "name": "release",
             "displayName": "release",
             "description": "Release",
-            "binaryDir": "${sourceDir}/release",
+            "binaryDir": "${sourceDir}/build",
             "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "release-asio",
+            "displayName": "release-asio",
+            "description": "Release with ASIO",
+            "binaryDir": "${sourceDir}/build",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "POWERSHELL_ASIO": true
             }
         }
     ],
@@ -18,6 +29,12 @@
             "displayName": "release",
             "description": "Release",
             "configurePreset": "release"
+        },
+        {
+            "name": "release-asio",
+            "displayName": "release-asio",
+            "description": "Release with ASIO",
+            "configurePreset": "release-asio"
         }
     ]
 }

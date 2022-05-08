@@ -1,5 +1,4 @@
-build/
-release/
-CMakeUserPresets.json
 .vscode/
+CMakeUserPresets.json
+build/
 libs/asio
