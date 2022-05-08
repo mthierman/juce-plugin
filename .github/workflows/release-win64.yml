@@ -25,7 +25,7 @@ jobs:
           submodules: recursive
 
       - name: CMake
-        run: pwsh -NoExit -NoLogo -NonInteractive -File ".\scripts\Windows.ps1"
+        run: Import-Module .\scripts\PowerShellScripts && 64bit && release
 
       - name: Artifact
         uses: actions/upload-artifact@v3
