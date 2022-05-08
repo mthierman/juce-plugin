@@ -14,7 +14,7 @@ juce_add_plugin(${PROJECT_NAME}
     FORMATS VST3 Standalone
     PLUGIN_MANUFACTURER_CODE Manu
     PLUGIN_CODE Plug
-    ICON_BIG "${CMAKE_SOURCE_DIR}/resources/logo/logo.png"
+    ICON_BIG "${CMAKE_SOURCE_DIR}/resources/images/logo.png"
     )
 
 clap_juce_extensions_plugin(

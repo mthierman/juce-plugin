@@ -5,6 +5,14 @@ on: workflow_dispatch
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: pwsh
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  POWERSHELL_TELEMETRY_OPTOUT: 1
+
 jobs:
 
   build:
