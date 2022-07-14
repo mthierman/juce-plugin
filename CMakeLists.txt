@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(TestPlugin VERSION 0.0.1 LANGUAGES C CXX ASM)
 set(CMAKE_CXX_STANDARD 17)
-add_subdirectory(libs/JUCE)
+add_subdirectory(libs/JUCE EXCLUDE_FROM_ALL)
 add_subdirectory(libs/clap-juce-extensions EXCLUDE_FROM_ALL)
 
 math(EXPR BITNESS "${CMAKE_SIZEOF_VOID_P} * 8" OUTPUT_FORMAT DECIMAL)
