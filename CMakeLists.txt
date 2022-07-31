@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(TestPlugin VERSION 0.0.1 LANGUAGES C CXX ASM)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 add_subdirectory(libs/JUCE EXCLUDE_FROM_ALL)
 add_subdirectory(libs/clap-juce-extensions EXCLUDE_FROM_ALL)
 
@@ -15,6 +15,7 @@ juce_add_plugin(${PROJECT_NAME}
   PLUGIN_MANUFACTURER_CODE Manu
   PLUGIN_CODE Plug
   ICON_BIG "${CMAKE_SOURCE_DIR}/resources/images/logo.png"
+  NEEDS_WEB_BROWSER TRUE
 )
 
 clap_juce_extensions_plugin(
@@ -30,7 +31,7 @@ target_sources(${PROJECT_NAME}
 
 target_compile_definitions(${PROJECT_NAME}
   PUBLIC
-    JUCE_WEB_BROWSER=0
+    JUCE_WEB_BROWSER=1
     JUCE_USE_CURL=0
     JUCE_VST3_CAN_REPLACE_VST2=0
     JUCE_DISPLAY_SPLASH_SCREEN=0)
